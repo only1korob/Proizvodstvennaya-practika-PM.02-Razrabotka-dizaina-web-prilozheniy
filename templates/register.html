@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация — MyBakery</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .register-box {
+            background: #2d2d2d;
+            padding: 40px;
+            border-radius: 12px;
+            width: 380px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border-top: 4px solid #c29d0b;
+        }
+        h2 { color: #fff; margin-bottom: 10px; }
+        p { color: #888; margin-bottom: 25px; font-size: 14px; }
+        label { display: block; text-align: left; margin-bottom: 5px; font-size: 13px; color: #c29d0b; }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background: #3d3d3d;
+            border: 1px solid #4d4d4d;
+            color: white;
+            border-radius: 6px;
+            box-sizing: border-box;
+            outline: none;
+        }
+        input:focus { border-color: #c29d0b; }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #c29d0b;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #1a1a1a;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        button:hover { background: #e0b612; }
+        .footer-link { margin-top: 20px; font-size: 13px; }
+        .footer-link a { color: #c29d0b; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="register-box">
+        <h2>Регистрация</h2>
+        <p>Создайте аккаунт в MyBakery</p>
+
+        <label>Ваше имя</label>
+        <input type="text" placeholder="Иван Иванов">
+
+        <label>Электронная почта</label>
+        <input type="email" placeholder="example@mail.ru">
+
+        <label>Придумайте пароль</label>
+        <input type="password" placeholder="••••••••">
+
+        <button>Зарегистрироваться</button>
+
+        <div class="footer-link">
+            Уже есть аккаунт? <a href="/login">Войти</a>
+        </div>
+    </div>
+</body>
+</html>

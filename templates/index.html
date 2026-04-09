@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MyBakery — Витрина</title>
+    <style>
+        body { background-color: #fdf5e6; font-family: 'Segoe UI', sans-serif; color: #5d4037; margin: 0; }
+        /* Шапка с меню */
+        .header { background-color: #8d6e63; color: white; padding: 20px; text-align: center; }
+        .nav { background: #6d4c41; padding: 10px; text-align: center; }
+        .nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; font-size: 14px; }
+        .nav a:hover { color: #ffeb3b; }
+
+        .container { display: flex; justify-content: center; padding: 40px; }
+        .card {
+            background: white; border-radius: 15px; padding: 25px; width: 300px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid #d7ccc8; text-align: center;
+        }
+        .price { font-size: 24px; color: #a1887f; font-weight: bold; }
+        .btn { background: #6d4c41; color: white; border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🍞 MyBakery</h1>
+    </div>
+
+    <div class="nav">
+        <a href="/">ГЛАВНАЯ</a>
+        <a href="/login">ВХОД</a>
+        <a href="/register">РЕГИСТРАЦИЯ</a>
+        <a href="/dashboard">УЧЁТ (ОТЧЕТ)</a>
+    </div>
+
+    <div class="container">
+        {% for p in products %}
+        <div class="card">
+            <h2>{{ p.title }}</h2>
+            <p class="price">{{ p.price }} ₽</p>
+            <p>В наличии: {{ p.amount }} шт.</p>
+            <button class="btn">Купить сейчас</button>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Учёт продаж — MyBakery</title>
+    <style>
+        body { background-color: #1a1a1a; color: white; font-family: sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #2d2d2d; }
+        th, td { border: 1px solid #444; padding: 12px; text-align: left; }
+        th { background: #333; color: #c29d0b; }
+        .header { border-left: 5px solid #c29d0b; padding-left: 15px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Учёт продаж и отчётность</h1>
+        <p>Вывод данных из БД MyBakery</p>
+    </div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Наименование товара</th>
+            <th>Цена (руб)</th>
+            <th>Остаток на складе</th>
+        </tr>
+        {% for p in products %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.title }}</td>
+            <td>{{ p.price }}</td>
+            <td>{{ p.amount }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/" style="color: #c29d0b;">Вернуться на витрину</a>
+</body>
+</html>
