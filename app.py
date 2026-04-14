@@ -39,7 +39,6 @@ def register(): return render_template('register.html')
 def dashboard():
     products = Product.query.all()
 
-    # Оптимизация UX: Автоматический расчет итогов
     total_quantity = sum(p.amount for p in products)
     total_value = sum(p.amount * p.price for p in products)
 
