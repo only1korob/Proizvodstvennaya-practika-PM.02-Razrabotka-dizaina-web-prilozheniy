@@ -1,46 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>MyBakery — Витрина</title>
-    <style>
-        body { background-color: #fdf5e6; font-family: 'Segoe UI', sans-serif; color: #5d4037; margin: 0; }
-        /* Шапка с меню */
-        .header { background-color: #8d6e63; color: white; padding: 20px; text-align: center; }
-        .nav { background: #6d4c41; padding: 10px; text-align: center; }
-        .nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; font-size: 14px; }
-        .nav a:hover { color: #ffeb3b; }
-
-        .container { display: flex; justify-content: center; padding: 40px; }
-        .card {
-            background: white; border-radius: 15px; padding: 25px; width: 300px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid #d7ccc8; text-align: center;
-        }
-        .price { font-size: 24px; color: #a1887f; font-weight: bold; }
-        .btn { background: #6d4c41; color: white; border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; margin-top: 15px; }
-    </style>
+    <title>MyBakery — Главная</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="header">
-        <h1>🍞 MyBakery</h1>
-    </div>
 
     <div class="nav">
         <a href="/">ГЛАВНАЯ</a>
         <a href="/login">ВХОД</a>
         <a href="/register">РЕГИСТРАЦИЯ</a>
-        <a href="/dashboard">УЧЁТ (ОТЧЕТ)</a>
+        <a href="/dashboard">ОТЧЕТ (БД)</a>
     </div>
 
-    <div class="container">
+    <div class="header" style="text-align: center; padding: 40px; background: #8d6e63; color: white;">
+        <h1>🍞 Добро пожаловать в MyBakery</h1>
+        <p>Свежая выпечка из нашей базы данных</p>
+    </div>
+
+    <div class="container" style="display: flex; justify-content: center; flex-wrap: wrap; padding: 20px;">
         {% for p in products %}
-        <div class="card">
+        <div class="card" style="margin: 15px;">
             <h2>{{ p.title }}</h2>
             <p class="price">{{ p.price }} ₽</p>
             <p>В наличии: {{ p.amount }} шт.</p>
-            <button class="btn">Купить сейчас</button>
+            <button style="background: #6d4c41; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer;">
+                Купить
+            </button>
+        </div>
+        {% else %}
+        <div style="text-align: center; width: 100%;">
+            <p>Товаров пока нет. Добавьте их через консоль или проверьте базу!</p>
         </div>
         {% endfor %}
     </div>
+
 </body>
 </html>

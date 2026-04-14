@@ -1,40 +1,39 @@
-from flask import Flask, render_template
+import os
+from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bakery.db'
+
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'bakery.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 db = SQLAlchemy(app)
 
-# Модели (База данных)
+
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String(100), nullable=False, index=True)
     price = db.Column(db.Float, nullable=False)
     amount = db.Column(db.Integer, default=0)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
 
-# 1. Главная (Витрина)
 @app.route('/')
 def home():
-    all_products = Product.query.all()
+    all_products = Product.query.order_by(Product.title).all()
     return render_template('index.html', products=all_products)
 
-# 2. Страница входа
 @app.route('/login')
-def login():
-    return render_template('login.html')
+def login(): return render_template('login.html')
 
-# 3. Страница регистрации
 @app.route('/register')
-def register():
-    return render_template('register.html')
+def register(): return render_template('register.html')
 
-# 4. Учёт и отчётность
 @app.route('/dashboard')
 def dashboard():
     all_products = Product.query.all()
