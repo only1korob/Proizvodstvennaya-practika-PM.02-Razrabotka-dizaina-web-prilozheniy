@@ -34,10 +34,19 @@ def login(): return render_template('login.html')
 @app.route('/register')
 def register(): return render_template('register.html')
 
+
 @app.route('/dashboard')
 def dashboard():
-    all_products = Product.query.all()
-    return render_template('dashboard.html', products=all_products)
+    products = Product.query.all()
+
+    # Оптимизация UX: Автоматический расчет итогов
+    total_quantity = sum(p.amount for p in products)
+    total_value = sum(p.amount * p.price for p in products)
+
+    return render_template('dashboard.html',
+                           products=products,
+                           total_q=total_quantity,
+                           total_v=total_value)
 
 if __name__ == '__main__':
     with app.app_context():
